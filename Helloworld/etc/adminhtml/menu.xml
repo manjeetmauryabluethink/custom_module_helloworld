@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bluethink_Helloworld::bluethink" title="Bluethink" module="Bluethink_Helloworld" sortOrder="900" resource="Bluethink_Helloworld::bluethink"/>
+
+ 
+
+        <add id="Bluethink_Helloworld::Products" title="Admin " module="Bluethink_Helloworld" sortOrder="10" action="bluethink/index/product" resource="Bluethink_Helloworld::Products" parent="Bluethink_Helloworld::bluethink"/>
+
+       
+
+
+        <add id="Bluethink_Helloworld::category" title="Categories" module="Bluethink_Helloworld" sortOrder="99" parent="Bluethink_Helloworld::bluethink" action="bluethink/index/category" resource="Bluethink_Helloworld::category"/>
+
+
+      <add id="Bluethink_Helloworld::grid" title="Grid" module="Bluethink_Helloworld" sortOrder="99" parent="Bluethink_Helloworld::bluethink" action="bluethink/post/index" resource="Bluethink_Helloworld::grid"/>
+
+
+
+
+    </menu>
+</config>

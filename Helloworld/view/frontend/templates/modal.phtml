@@ -1,0 +1,107 @@
+<div id="custom-model-popup" >
+   <form id="form_data">
+      <div id="json_out"></div>
+      <div>
+         <label class="label" for="title"><span><?= $block->
+            escapeHtmlAttr(__('Email')) ?></span></label>
+         <div class="control">
+            <input name="email" id="email" title="Email" class="input-text" type="text">
+         </div>
+      </div>
+      <br>
+      <div class="actions-toolbar">
+         <div class="primary">
+            <button type="submit" class="action submit primary"  id ="submit_btn" title="Subscriber"><span><?= $block->
+               escapeHtmlAttr(__('Subscriber')) ?></span></button>
+         </div>
+      </div>
+   </form>
+</div>
+<?php
+// $helper = $this->helper('Bluethink\Helloworld\Helper\Data');
+// $isCustomerSubscribe = $helper->isCustomerSubscribe();
+
+$isCustomerSubscribe= $block->isCustomerSubscribe();
+//   var_dump($isCustomerSubscribe);
+  
+   if($isCustomerSubscribe == true)
+   {
+       
+       ?>
+        <script>
+            alert("You are already subscribed.");
+
+            require([
+       "jquery",
+       "Magento_Ui/js/modal/modal"
+   ], function($, modal){
+       var options = {
+           type: 'popup',
+           responsive: true,
+           innerScroll: true,
+           title: "", //write your popup title  
+       };
+    
+       var popupdata = $('<div />').append($('#custom-model-popup'));
+       modal(options, popupdata);
+    //    $("#custom-model-popup").css("display","none");
+       popupdata.modal('closeModal');
+     
+    
+   });
+
+
+        </script>
+    <?php 
+   }
+   else
+   {
+       ?>
+<script> 
+   require([
+       "jquery",
+       "Magento_Ui/js/modal/modal"
+   ], function($, modal){
+       var options = {
+           type: 'popup',
+           responsive: true,
+           innerScroll: true,
+           title: "", //write your popup title  
+       };
+    
+       var popupdata = $('<div />').append($('#custom-model-popup'));
+       modal(options, popupdata);
+       popupdata.modal('openModal');
+   
+       $("#submit_btn").on('click',function(e){
+           e.preventDefault();
+        
+       var email = $("#email").val();
+       // $("#custom-model-popup").hide();
+       // $(".modal-header").hide();
+       // $(".modal-footer").hide();
+       // $(".modal-content").hide();
+        $.ajax({
+               url:"/bluethink/page/displayjson",
+               type: 'POST',
+               data:{email:email},
+               dataType: 'json',
+               showLoader: true,
+               success: function (data) {
+          
+ var data = $("#json_out").html(data.json_data).delay(1000).hide(data.json_data);
+ $("#custom-model-popup").delay(1000).hide("slow");
+ $(".modal-header").delay(1000).hide("slow");
+ $(".modal-footer").delay(1000).hide("slow");
+ $(".modal-content").delay(1000).hide("slow");
+
+                       }
+                       
+        });
+       });
+   });
+   
+</script> 
+<?php 
+   }
+   ?>

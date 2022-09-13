@@ -1,0 +1,62 @@
+<div class="modal-content">
+<div id="custom-popup-modal" class="custom-popup-modal" style="display:none;">
+<p id="example-modal-button" title="Save" data-mage-init='{"example-modal": {"target": "#modal-content"}}'>
+    <div id="json_out"></div>
+<div><?php $block->getEmailData(); ?></div>
+<form  id="addData" class="form"  
+            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+            data-mage-init='{"validation":{}}'>
+          <fieldset class="fieldset">
+              <legend class="legend"><span><?= $block->escapeHtmlAttr(__('Fill Detail')) ?></span></legend>
+              <fieldset class="fieldset row">
+                  <div class="fields col-md-6">
+                      <div class="field name required">
+                          <label class="label" for="title"><span><?= $block->
+                              escapeHtmlAttr(__('Email')) ?></span></label>
+                          <div class="control">
+                              <input name="email" id="email" title="Email" value="" class="input-text" type="text"
+                                data-validate="{required:true, 'validate-email':true}">
+                          </div>
+                      </div>
+                  </div>
+              </fieldset>
+          </fieldset>
+          <div class="actions-toolbar">
+              <div class="primary">
+                  <button type="submit" class="action submit primary" id="submit_button" title="Save"><span><?= $block->
+                      escapeHtmlAttr(__('subscriber')) ?></span></button>
+              </div>
+          </div>
+      </form>
+</p> 
+</div>  
+<script>
+    requirejs(['jquery'], function( $ ) {
+    $(document).ready(function(){
+    $("#submit_button").on("click",function(){
+    // e.preventDefault();
+    var email = $("#email").val();
+    $(".modal-content").hide();
+    $(".modal-header").hide();
+    $(".modal-footer").hide();
+    $.ajax({
+        // url:"/newsletter/subscriber/new/",
+         url:"/bluethink/subscriber/displayjson/",
+        type:"post",
+        dataType: 'json',
+        showLoader: true,
+        data:{email:email},
+        success:function (mydata) {
+                $("#json_out").val(mydata.json_data);
+                        }
+            });
+        }); 
+    });
+    
+
+    
+});
+</script>
+
+
+
