@@ -1,0 +1,12 @@
+{
+    "bluethink_form_crud": {
+        "column": {
+            "user_id": true,
+            "name": true,
+            "email": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

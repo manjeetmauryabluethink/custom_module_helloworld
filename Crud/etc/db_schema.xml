@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="bluethink_form_crud" resource="default" comment="List of data/schema patches">
+        <column xsi:type="int" name="user_id" identity="true" comment="Patch Auto Increment" />
+        <column xsi:type="varchar" name="name" length="1024" nullable="false" comment="Patch Class Name" />
+
+        <column xsi:type="varchar" name="email" length="1024" nullable="false" comment="Patch Class Name" />  
+
+                  
+                    
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="user_id" />
+        </constraint>
+    </table>
+</schema>
