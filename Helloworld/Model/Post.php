@@ -1,5 +1,5 @@
 <?php
-namespace Bluethink\Helloworld\Model;
+namespace Bluethink\Helloworld\Model
  
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
